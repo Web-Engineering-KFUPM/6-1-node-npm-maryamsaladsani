@@ -1,10 +1,15 @@
 import _ from "lodash";
 
 export function parseNumbers(input) {
-  return {/*write code here*/}
+  // Convert each string to a number
+  const numbers = _.map(input, (str) => Number(str));
+
+  // Remove falsy values like NaN, null, "", etc.
+  return _.compact(numbers);
 }
 
 export function isValidOperation(operation) {
-  return {/*write code here*/}
+  const validOps = ["add", "subtract", "multiply", "divide"];
+  return _.includes(validOps, operation);
 }
 
