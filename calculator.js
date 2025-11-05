@@ -1,9 +1,3 @@
-import { add, subtract } from "./utils/operations.js";
-import { parseNumbers, isValidOperation } from "./utils/parser.js";
-import _ from "lodash";
-
-const operation = process.argv[2];
-const numbers = process.argv.slice(3);
 /*
 ===================================================================
 Node.js & npm Lab — CLI Calculator
@@ -180,3 +174,55 @@ After completing all TODOs, test your calculator:
   Expected output: Invalid operation. Use: add, subtract, multiply, or divide
 
 */
+
+
+
+// TODO 1
+import { add, subtract } from "./utils/operations.js";
+import { parseNumbers, isValidOperation } from "./utils/parser.js";
+import _ from "lodash";
+
+// TODO 2
+const operation = process.argv[2];
+const numbers = process.argv.slice(3);
+
+
+// TODO 3
+// Validate operation
+if (!isValidOperation(operation)) {
+    console.log("Invalid operation. Use: add, subtract, multiply, or divide");
+    process.exit(1); // stops execution
+}
+
+// Parse numbers from command line
+const nums = parseNumbers(numbers);
+
+// Handle empty or invalid numbers
+if (nums.length === 0) {
+    console.log("Please provide valid numbers.");
+    process.exit(1);
+}
+
+let result;
+
+// Perform the correct operation
+switch (operation) {
+    case "add":
+        result = add(nums);
+        break;
+    case "subtract":
+        result = subtract(nums);
+        break;
+    case "multiply":
+        result = multiply(nums);
+        break;
+    case "divide":
+        result = divide(nums);
+        break;
+    default:
+        console.log("❌ Unknown operation.");
+        process.exit(1);
+}
+
+// Display the result
+console.log(`Result: ${result}`);
